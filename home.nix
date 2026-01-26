@@ -22,6 +22,7 @@
     jq          # JSON加工
     tree
     gnumake
+    docker
 
     # Kubernetes関連
     kubectl
