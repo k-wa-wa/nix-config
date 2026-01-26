@@ -83,6 +83,14 @@
     };
   };
 
+  programs.go = {
+    enable = true;
+    # pkgs.go の代わりに特定のバージョンを指定
+    package = pkgs.go_1_25;
+  };
+
+  home.sessionPath = [ "$HOME/go/bin" ];
+
   # Home Manager 自体の管理を有効化
   programs.home-manager.enable = true;
 }
