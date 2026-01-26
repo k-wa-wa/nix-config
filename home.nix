@@ -14,6 +14,7 @@
 
     # 開発・生産性向上
     git
+    gh          # GitHub CLI
     ripgrep     # 超高速 grep
     fzf         # 曖昧検索
     eza         # ls のモダンな代替
@@ -26,6 +27,9 @@
     kubernetes-helm
     k9s              # TUIでKubernetesを操作できる便利ツール
     kubectx          # コンテキスト切り替えを楽にするツール
+
+    # Nodejs
+    nodejs_24
   ];
 
   # ---------------------------------------------------------------------------
@@ -89,7 +93,9 @@
     package = pkgs.go_1_25;
   };
 
-  home.sessionPath = [ "$HOME/go/bin" ];
+  home.sessionPath = [
+    "$HOME/go/bin"
+  ];
 
   # Home Manager 自体の管理を有効化
   programs.home-manager.enable = true;
