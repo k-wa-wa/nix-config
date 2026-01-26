@@ -21,6 +21,7 @@
     bat         # cat のモダンな代替（シンタックスハイライト付）
     jq          # JSON加工
     tree
+    gnumake
 
     # Kubernetes関連
     kubectl
