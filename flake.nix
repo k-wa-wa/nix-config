@@ -8,23 +8,16 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations = {
-      # ここがあなたの Mac 用の設定名
-      "watanabekouhei@macbook" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        extraSpecialArgs = {
-          username = "watanabekouhei";
-        };
-        modules = [ ./home.nix ];
-      };
+    # Mac 用の適用コマンド: home-manager switch --flake .#macbook
+    homeConfigurations."macbook" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Intel Macなら x86_64-darwin
+      modules = [ ./hosts/macbook/home.nix ];
+    };
 
-      "watanabekouhei@ubuntu" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          username = "watanabekouhei";
-        };
-        modules = [ ./home.nix ];
-      };
+    # Linux 用の適用コマンド: home-manager switch --flake .#ubuntu
+    homeConfigurations."ubuntu" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ ./hosts/ubuntu/home.nix ];
     };
   };
 }
