@@ -9,8 +9,6 @@
   home.packages = with pkgs; [
     # システム管理・モニタリング
     htop
-    bottom      # モダンなリソースモニター
-    neofetch    # システム情報表示
 
     # 開発・生産性向上
     git
