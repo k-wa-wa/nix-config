@@ -7,5 +7,6 @@
 
   # Macでのみ使いたいパッケージがあれば追加
   home.packages = with pkgs; [
+    ghostty-bin
   ];
 }

@@ -30,8 +30,6 @@
 
     # Nodejs
     nodejs_24
-
-    ghostty-bin
   ];
 
   programs.go = {
