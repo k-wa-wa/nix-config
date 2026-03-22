@@ -25,6 +25,8 @@
     gnumake
     docker
 
+    wget
+
     # Nodejs
     nodejs_24
   ];
