@@ -1,9 +1,3 @@
-keybind = global:cmd+g=toggle_quick_terminal
-
-quick-terminal-position = top
-quick-terminal-screen = mouse
-quick-terminal-animation-duration = 0.2
-
 background-opacity = 0.75
 background = black
 
@@ -14,5 +8,4 @@ font-size    = 12
 cursor-style = block
 shell-integration-features = no-cursor
 
-# 通常のタブのみ
 window-padding-x = 20
