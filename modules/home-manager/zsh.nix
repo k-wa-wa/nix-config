@@ -40,7 +40,6 @@
     '';
 
     shellAliases = {
-      k = "kubectl";
       ls = "eza";
       ll = "eza -l";
       less = "bat";

@@ -2,6 +2,7 @@
   imports = [
     ./git.nix
     ./zsh.nix
+    ./k8s.nix
   ];
 
   programs.home-manager.enable = true; # Home Manager自身を管理
@@ -21,12 +22,6 @@
     tree
     gnumake
     docker
-
-    # Kubernetes関連
-    kubectl
-    kubernetes-helm
-    k9s              # TUIでKubernetesを操作できる便利ツール
-    kubectx          # コンテキスト切り替えを楽にするツール
 
     # Nodejs
     nodejs_24
