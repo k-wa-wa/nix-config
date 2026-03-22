@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     # システム管理・モニタリング
     htop
+    fastfetch    # システム情報の表示
 
     # 開発・生産性向上
     git
