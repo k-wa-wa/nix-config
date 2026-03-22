@@ -3,6 +3,7 @@
     ./git.nix
     ./zsh.nix
     ./k8s.nix
+    ./tofu.nix
   ];
 
   programs.home-manager.enable = true; # Home Manager自身を管理
