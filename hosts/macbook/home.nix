@@ -1,12 +1,10 @@
 { pkgs, ... }: {
-  imports = [ ../../modules/home-manager/common.nix ];
+  imports = [
+    ../../modules/home-manager/common.nix
+    ../../modules/home-manager/ghostty/ghostty.nix
+  ];
 
   home.stateVersion = "23.11";
   home.username = "watanabekouhei";
   home.homeDirectory = "/Users/watanabekouhei";
-
-  # Macでのみ使いたいパッケージがあれば追加
-  home.packages = with pkgs; [
-    ghostty-bin
-  ];
 }

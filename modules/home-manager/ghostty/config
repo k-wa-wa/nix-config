@@ -1,0 +1,7 @@
+keybind = global:cmd+g=toggle_quick_terminal
+
+quick-terminal-position = top
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0.2
+background-opacity = 0.9
+background = black
