@@ -2,6 +2,8 @@
   imports = [
     ./git.nix
     ./zsh.nix
+    ./tmux.nix
+
     ./k8s.nix
     ./tofu.nix
   ];
