@@ -30,8 +30,8 @@
       query=$(printf '%s' "$result" | head -1)
       selected=$(printf '%s' "$result" | sed -n '2p')
 
-      # Escape
-      [ $fzf_exit -eq 130 ] && exit 0
+      # Escape / Ctrl+C → 通常シェルに落ちる（exit しない）
+      [ $fzf_exit -eq 130 ] && exit 1
 
       # リストにないテキストを入力して Enter → カスタムセッション名で新規作成
       if [ $fzf_exit -eq 1 ] && [ -n "$query" ]; then
@@ -103,9 +103,6 @@
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
 
-      # prefix + X でセッションを終了
-      bind X kill-session
-
       # prefix + f で Sessionizer を起動（フローティングウィンドウ）
       bind f display-popup -E -w 80% -h 60% -d "#{pane_current_path}" tmux-sessionizer
     '';
@@ -126,11 +123,6 @@
           # iTerm / Ghostty: sessionizer を起動
           tmux-sessionizer && exit
         fi
-      fi
-
-      # tmux 内では exit をデタッチに上書き
-      if [ -n "$TMUX" ]; then
-        exit() { tmux detach-client; }
       fi
     '';
   };
