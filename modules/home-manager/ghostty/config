@@ -13,3 +13,6 @@ font-size    = 12
 
 cursor-style = block
 shell-integration-features = no-cursor
+
+# 通常のタブのみ
+window-padding-x = 20
