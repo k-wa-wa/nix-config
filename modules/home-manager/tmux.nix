@@ -71,6 +71,9 @@
       # True color
       set -ga terminal-overrides ",*256col*:Tc"
 
+      # 選択時にクリップボードへ自動コピーしない
+      set -s set-clipboard off
+
       # ステータスバーを上部に表示
       set -g status-position top
 
