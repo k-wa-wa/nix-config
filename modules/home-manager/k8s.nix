@@ -21,6 +21,8 @@
   };
 
   programs.zsh.initContent = ''
+    # kubectl completion を読み込んでから compdef でエイリアスを設定する
+    source <(kubectl completion zsh)
     compdef kubecolor=kubectl
     compdef k=kubectl
   '';
