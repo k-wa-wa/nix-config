@@ -18,11 +18,12 @@
       }
 
       sessions=$(tmux list-sessions -F "[s] #{session_name}" 2>/dev/null)
+      ghqdirs=$(ghq list --full-path 2>/dev/null)
       zdirs=$(zoxide query --list 2>/dev/null)
 
       # $PWD を先頭に、zoxide 履歴・既存セッションを続けて表示
       # --print-query: 入力テキストも取得（カスタムセッション名として使う）
-      result=$(printf "%s\n%s\n%s" "$sessions" "$PWD" "$zdirs" \
+      result=$(printf "%s\n%s\n%s\n%s" "$sessions" "$ghqdirs" "$PWD" "$zdirs" \
         | awk '!seen[$0]++' | grep -v '^$' \
         | fzf --height 60% --border --prompt "tmux> " --reverse --print-query)
       fzf_exit=$?

@@ -14,7 +14,8 @@
 
     # 開発・生産性向上
     git
-    gh          # GitHub CLI
+    ghq
+    peco
     ripgrep     # 超高速 grep
     fzf         # 曖昧検索
     eza         # ls のモダンな代替
