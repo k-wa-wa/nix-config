@@ -4,6 +4,7 @@
     ../../modules/home-manager/k8s
     ../../modules/home-manager/iac
     ../../modules/home-manager/ghostty
+    ../../modules/home-manager/others/alias.nix
   ];
 
   home.stateVersion = "23.11";
