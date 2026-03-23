@@ -68,6 +68,8 @@
     mouse = true;
     terminal = "tmux-256color";
     extraConfig = ''
+      set-option -gw mode-keys vi
+
       # True color
       set -ga terminal-overrides ",*256col*:Tc"
 
@@ -90,7 +92,7 @@
       set -g status-right "%Y-%m-%d %H:%M"
       set -g status-right-length 30
 
-      # | で縦分割、- で横分割（直感的！）
+      # | で縦分割、- で横分割
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
 
@@ -105,6 +107,11 @@
 
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
+
+      # ドラッグ終了時にコピーモードを終了しない
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X noop
+      # 選択範囲外をクリックした時に選択を解除する
+      bind-key -T copy-mode-vi MouseDown1Pane send-keys -X clear-selection
     '';
   };
 
