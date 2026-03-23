@@ -1,6 +1,8 @@
 { lib, pkgs, ... }: {
   imports = [
     ../../modules/home-manager/core
+    ../../modules/home-manager/k8s
+    ../../modules/home-manager/iac
   ];
 
   home.stateVersion = "24.11";
