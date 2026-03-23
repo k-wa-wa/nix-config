@@ -23,10 +23,12 @@
     eza # ls のモダンな代替
     bat # cat のモダンな代替（シンタックスハイライト付）
     jq
+    yq
     tree
     gnumake
     docker
 
+    curl
     wget
 
     # Nodejs
