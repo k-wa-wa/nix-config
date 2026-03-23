@@ -20,11 +20,11 @@
   programs.zsh = {
     shellAliases = {
       g  = "git";
-      sd = "peco-cd";
+      sd = "ghq-cd";
     };
     initContent = ''
-      function peco-cd {
-        local dir=$(ghq list --full-path | peco)
+      function ghq-cd {
+        local dir=$(ghq list --full-path | fzf --height 40% --border --preview 'eza --tree --level=2 --icons --color=always {}')
         if [ -n "$dir" ]; then
           cd "$dir"
         fi

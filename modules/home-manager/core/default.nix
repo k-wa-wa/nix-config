@@ -17,7 +17,6 @@
     # 開発・生産性向上
     git
     ghq
-    peco
     ripgrep
     fzf
     eza # ls のモダンな代替
