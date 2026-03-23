@@ -5,7 +5,7 @@
       ghq = {
         root = "~/ghq";
       };
-      aliases = {
+      alias = {
         b = "branch";
         s = "switch";
         c = "commit";
