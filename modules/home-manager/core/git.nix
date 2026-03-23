@@ -5,6 +5,15 @@
       ghq = {
         root = "~/ghq";
       };
+      aliases = {
+        b = "branch";
+        s = "switch";
+        c = "commit";
+        f = "fetch";
+        p = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
+        pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
+        co = "checkout";
+      };
     };
   };
 
