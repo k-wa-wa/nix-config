@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ../../modules/home-manager/essentials/all.nix
+    ../../modules/home-manager/core
   ];
 
   home.stateVersion = "23.11";

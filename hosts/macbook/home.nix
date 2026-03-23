@@ -1,12 +1,26 @@
 { pkgs, ... }: {
   imports = [
-    ../../modules/home-manager/essentials/all.nix
-    ../../modules/home-manager/private/all.nix
-
-    ../../modules/home-manager/additional/ghostty/ghostty.nix
+    ../../modules/home-manager/core
+    ../../modules/home-manager/k8s
+    ../../modules/home-manager/iac
+    ../../modules/home-manager/ghostty
   ];
 
   home.stateVersion = "23.11";
   home.username = "watanabekouhei";
   home.homeDirectory = "/Users/watanabekouhei";
+
+  programs.git.settings.user = {
+    name = "Kohei Watanabe";
+    email = "sek.ohei.w0822@icloud.com";
+  };
+
+  programs.go = {
+    enable = true;
+    package = pkgs.go_1_25;
+  };
+
+  home.sessionPath = [
+    "$HOME/go/bin"
+  ];
 }
