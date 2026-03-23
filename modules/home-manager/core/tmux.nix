@@ -130,6 +130,9 @@
       bind k select-pane -U
       bind l select-pane -R
 
+      # Ctrl+d をデタッチに（セッションを残したまま抜ける）
+      bind -n C-d detach-client
+
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
 
