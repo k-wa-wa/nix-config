@@ -14,13 +14,4 @@
     name = "Kohei Watanabe";
     email = "sek.ohei.w0822@icloud.com";
   };
-
-  programs.go = {
-    enable = true;
-    package = pkgs.go_1_25;
-  };
-
-  home.sessionPath = [
-    "$HOME/go/bin"
-  ];
 }
