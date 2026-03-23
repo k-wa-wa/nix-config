@@ -18,11 +18,11 @@
     git
     ghq
     peco
-    ripgrep     # 超高速 grep
-    fzf         # 曖昧検索
-    eza         # ls のモダンな代替
-    bat         # cat のモダンな代替（シンタックスハイライト付）
-    jq          # JSON加工
+    ripgrep
+    fzf
+    eza # ls のモダンな代替
+    bat # cat のモダンな代替（シンタックスハイライト付）
+    jq
     tree
     gnumake
     docker

@@ -2,9 +2,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true; # 入力補完の提案
+    autosuggestion.enable = true;
     historySubstringSearch.enable = true; # 入力中の文字列から始まる履歴だけを検索
-    syntaxHighlighting.enable = true; # コマンドの色付け
+    syntaxHighlighting.enable = true;
 
     initContent = ''
       # Nix のパスを PATH の最優先（先頭）に配置する
@@ -47,11 +47,11 @@
     };
 
     history = {
-      size = 100000;        # メモリ上に保持する行数
-      save = 100000;        # ファイルに保存する行数
       path = "$HOME/.zsh_history";
-      ignoreDups = true;    # 直前と同じコマンドなら記録しない
-      share = true;         # 複数の端末間で履歴をリアルタイム共有する
+      size = 100000;                # メモリ上に保持する行数
+      save = 100000;                # ファイルに保存する行数
+      ignoreDups = true;            # 直前と同じコマンドなら記録しない
+      share = true;                 # 複数の端末間で履歴をリアルタイム共有する
       expireDuplicatesFirst = true; # 上限に達した際、重複している古いものから消す
     };
   };
@@ -144,13 +144,12 @@ $character
     enable = true;
     enableZshIntegration = true; # zshでのCtrl+rなどを有効化
 
-    # ezaやfdを使っているなら、プレビュー機能も付けられます
     defaultOptions = [
       "--height 40%"
       "--border"
     ];
 
-    # CTRL-T (ファイル検索) を fd にする
+    # Ctrl+t (ファイル検索) を fd にする
     fileWidgetCommand = "fd --type f --hidden --exclude .git";
   };
   programs.fd = {
