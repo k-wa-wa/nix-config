@@ -1,10 +1,6 @@
 { pkgs, ... }: {
-  # Sessionizer スクリプト
-  # - 既存セッション と ~ 配下のディレクトリを fzf で表示
-  # - 選択 → セッション作成 or アタッチ
-  # - Escape → 新しい無名セッションを作成（とにかく tmux に入れる）
   home.packages = [
-    (pkgs.writeShellScriptBin "tmux-sessionizer" ''
+    (pkgs.writeShellScriptBin "ts" ''
       _dir_to_session() {
         echo "$1" | sed "s|^$HOME|~|" | rev | cut -d'/' -f1-3 | rev | tr '/.' '_'
       }
@@ -18,7 +14,7 @@
       }
 
       sessions=$(tmux list-sessions -F "[s] #{session_name}" 2>/dev/null)
-      ghqdirs=$(ghq list --full-path 2>/dev/null)
+      ghqdirs=$(ghq list --full-path 2>/dev/null | sed 's|^|[ghq] |')
       zdirs=$(zoxide query --list 2>/dev/null)
 
       # $PWD を先頭に、zoxide 履歴・既存セッションを続けて表示
@@ -50,6 +46,9 @@
         _attach_or_switch "''${selected#"[s] "}"
         exit 0
       fi
+
+      # [ghq] prefix を除去
+      [[ "$selected" == "[ghq] "* ]] && selected="''${selected#"[ghq] "}"
 
       # ディレクトリを選択 → セッション名自動生成 + cd
       if [ -d "$selected" ]; then
@@ -106,9 +105,6 @@
 
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
-
-      # prefix + f で Sessionizer を起動（フローティングウィンドウ）
-      bind f display-popup -E -w 80% -h 60% -d "#{pane_current_path}" tmux-sessionizer
     '';
   };
 
@@ -124,8 +120,8 @@
           tmux new-session -As "$_session" 2>/dev/null && exit
           unset _session
         else
-          # iTerm / Ghostty: sessionizer を起動
-          tmux-sessionizer && exit
+          # iTerm / Ghostty: ts を起動
+          ts && exit
         fi
       fi
     '';
