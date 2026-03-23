@@ -3,9 +3,6 @@
     ./git.nix
     ./zsh.nix
     ./tmux.nix
-
-    ./k8s.nix
-    ./tofu.nix
   ];
 
   programs.home-manager.enable = true; # Home Manager自身を管理
@@ -31,15 +28,5 @@
 
     # Nodejs
     nodejs_24
-  ];
-
-  programs.go = {
-    enable = true;
-    # pkgs.go の代わりに特定のバージョンを指定
-    package = pkgs.go_1_25;
-  };
-
-  home.sessionPath = [
-    "$HOME/go/bin"
   ];
 }

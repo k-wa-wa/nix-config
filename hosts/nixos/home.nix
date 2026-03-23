@@ -1,5 +1,8 @@
 { lib, pkgs, ... }: {
-  imports = [ ../../modules/home-manager/common.nix ];
+  imports = [
+    ../../modules/home-manager/essentials/all.nix
+    ../../modules/home-manager/private/all.nix
+  ];
 
   home.stateVersion = "24.11";
   home.username = "nixos";

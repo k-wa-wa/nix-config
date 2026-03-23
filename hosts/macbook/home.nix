@@ -1,7 +1,9 @@
 { pkgs, ... }: {
   imports = [
-    ../../modules/home-manager/common.nix
-    ../../modules/home-manager/ghostty/ghostty.nix
+    ../../modules/home-manager/essentials/all.nix
+    ../../modules/home-manager/private/all.nix
+
+    ../../modules/home-manager/additional/ghostty/ghostty.nix
   ];
 
   home.stateVersion = "23.11";
