@@ -111,18 +111,9 @@
   programs.zsh = {
     enable = true;
     initExtra = ''
-      # ターミナル起動時の tmux 自動起動
-      if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-        if [ "$TERM_PROGRAM" = "vscode" ]; then
-          # VSCode: ワークスペースパスからセッション名を自動生成してアタッチ/作成
-          _session=$(echo "$PWD" | sed "s|^$HOME|~|" | rev | cut -d'/' -f1-3 | rev | tr '/.' '_')
-          [[ "$_session" == "~" ]] && _session="home"
-          tmux new-session -As "$_session" 2>/dev/null && exit
-          unset _session
-        else
-          # iTerm / Ghostty: ts を起動
-          ts && exit
-        fi
+      # ターミナル起動時の tmux 自動起動（VSCode では起動しない）
+      if [ -z "$TMUX" ] && [ -n "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+        ts && exit
       fi
     '';
   };
