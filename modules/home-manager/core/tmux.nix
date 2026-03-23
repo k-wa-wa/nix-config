@@ -76,6 +76,20 @@
       # 選択時にクリップボードへ自動コピーしない
       set -s set-clipboard off
 
+      # vim でのEsc遅延を防ぐ
+      set -sg escape-time 10
+
+      # vim/neovim のフォーカス検知（自動保存・reload に必要）
+      set -g focus-events on
+
+      # ウィンドウ番号を1始まりに
+      set -g base-index 1
+      setw -g pane-base-index 1
+      set -g renumber-windows on
+
+      # スクロールバック行数
+      set -g history-limit 50000
+
       # ステータスバーを上部に表示
       set -g status-position top
 
@@ -92,6 +106,20 @@
       set -g status-right "%Y-%m-%d %H:%M"
       set -g status-right-length 30
 
+      # ウィンドウタブ: アクティブを強調
+      set -g window-status-current-style "bg=#7aa2f7,fg=#1e2030,bold"
+      set -g window-status-style "fg=#737aa2"
+      set -g window-status-current-format " #I:#W "
+      set -g window-status-format " #I:#W "
+
+      # ペインのボーダー: アクティブ/非アクティブで色を分ける
+      set -g pane-border-style "fg=#3d4f7c"
+      set -g pane-active-border-style "fg=#89b4fa,bold"
+
+      # ペインのボーダーにインデックスとコマンド名を表示
+      set -g pane-border-status top
+      set -g pane-border-format " #[bold]#{pane_index}#[nobold] #{pane_current_command} "
+
       # | で縦分割、- で横分割
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
@@ -101,9 +129,6 @@
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-
-      # Ctrl+d をデタッチに（セッションを残したまま抜ける）
-      bind -n C-d detach-client
 
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
