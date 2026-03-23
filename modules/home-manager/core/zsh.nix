@@ -44,7 +44,6 @@
       ls = "eza";
       ll = "eza -l";
       less = "bat";
-      g = "git";
     };
 
     history = {

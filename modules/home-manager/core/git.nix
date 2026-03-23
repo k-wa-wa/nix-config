@@ -8,7 +8,7 @@
       alias = {
         b = "branch";
         s = "switch";
-        c = "commit";
+        c = "!git commit -m";
         f = "fetch";
         p = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
         pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
@@ -19,6 +19,7 @@
 
   programs.zsh = {
     shellAliases = {
+      g  = "git";
       sd = "peco-cd";
     };
     initContent = ''
