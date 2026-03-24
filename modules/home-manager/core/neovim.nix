@@ -40,6 +40,7 @@
 
       # ── Git ─────────────────────────────────────────────────────────────
       gitsigns-nvim
+      diffview-nvim
 
       # ── LSP ─────────────────────────────────────────────────────────────
       nvim-lspconfig
@@ -361,6 +362,25 @@
       })
 
       -- ══════════════════════════════════════════════════════════════════
+      --  Git: Diffview
+      -- ══════════════════════════════════════════════════════════════════
+      local ok_diffview, diffview = pcall(require, "diffview")
+      if ok_diffview then
+        diffview.setup({
+          enhanced_diff_hl = true,
+          view = {
+            default = {
+              layout = "diff2_horizontal", -- 左右分割
+            },
+          },
+          file_panel = {
+            listing_style = "tree",
+            win_config    = { width = 30 },
+          },
+        })
+      end
+
+      -- ══════════════════════════════════════════════════════════════════
       --  Editing helpers
       -- ══════════════════════════════════════════════════════════════════
       require("Comment").setup()
@@ -414,6 +434,12 @@
       map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk", silent = true })
       map("n", "]h",         ":Gitsigns next_hunk<CR>",    { desc = "Next hunk",    silent = true })
       map("n", "[h",         ":Gitsigns prev_hunk<CR>",    { desc = "Prev hunk",    silent = true })
+
+      -- Git (diffview) - VS Code のソース管理パネル相当
+      map("n", "<leader>gs", ":DiffviewOpen<CR>",          { desc = "Diffview open",         silent = true })
+      map("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "File history (current)", silent = true })
+      map("n", "<leader>gH", ":DiffviewFileHistory<CR>",   { desc = "File history (repo)",    silent = true })
+      map("n", "<leader>gc", ":DiffviewClose<CR>",         { desc = "Diffview close",         silent = true })
 
       -- 雑多
       map("n", "<leader>w", ":w<CR>",          { desc = "Save",         silent = true })
