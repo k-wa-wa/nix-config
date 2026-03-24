@@ -19,7 +19,7 @@
       _launch_ide() {
         local dir="$1"
         local session_name
-        session_name=$(_dir_to_session "$dir")
+        session_name="$(_dir_to_session "$dir")-ide"
         [[ "$session_name" == "~" ]] && session_name="home"
 
         # すでにセッションが存在すればそちらへ
