@@ -3,6 +3,7 @@
     ./git.nix
     ./zsh.nix
     ./tmux.nix
+    ./neovim.nix
 
     ./golang.nix
   ];
@@ -32,5 +33,9 @@
 
     # Nodejs
     nodejs_24
+
+    nerd-fonts.jetbrains-mono
   ];
+
+  fonts.fontconfig.enable = true;
 }

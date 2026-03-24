@@ -2,7 +2,7 @@ background-opacity = 0.75
 background = black
 
 font-feature = -dlig
-font-family  = "Monaco"
+font-family  = "JetBrainsMono Nerd Font"
 font-size    = 12
 
 cursor-style = block
