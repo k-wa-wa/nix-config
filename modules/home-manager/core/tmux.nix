@@ -202,11 +202,14 @@
       bind k select-pane -U
       bind l select-pane -R
 
-      # Ctrl+d をデタッチに（セッションを残したまま抜ける）
-      bind -n C-d detach-client
+      # Ctrl+d をデタッチに（nvim 内では neovim に渡す）
+      bind -n C-d if-shell "[ '#{pane_current_command}' = 'nvim' ]" "send-keys C-d" "detach-client"
 
       # prefix + x でペインを確認なしで閉じる
       bind x kill-pane
+
+      # prefix + X でセッションを削除
+      bind X kill-session
 
       # ドラッグ終了時にコピーモードを終了しない
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X noop

@@ -388,12 +388,10 @@
 
       -- Telescope
       local builtin = require("telescope.builtin")
-      map("n", "<C-p>",      builtin.find_files,                { desc = "Find files" })
       map("n", "<leader>ff", builtin.find_files,                { desc = "Find files" })
       map("n", "<leader>fg", builtin.live_grep,                 { desc = "Live grep" })
       map("n", "<leader>fb", builtin.buffers,                   { desc = "Buffers" })
       map("n", "<leader>fh", builtin.help_tags,                 { desc = "Help tags" })
-      map("n", "<leader>fr", builtin.oldfiles,                  { desc = "Recent files" })
       map("n", "<leader>fs", builtin.lsp_document_symbols,      { desc = "Symbols" })
       map("n", "<leader>fd", builtin.diagnostics,               { desc = "Diagnostics" })
       map("n", "<leader>/",  builtin.current_buffer_fuzzy_find, { desc = "Search in buffer" })
