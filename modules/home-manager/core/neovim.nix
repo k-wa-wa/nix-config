@@ -378,8 +378,8 @@
       map("n", "<C-l>", "<C-w>l", { desc = "Pane right" })
 
       -- バッファ移動
-      map("n", "<S-h>",      ":bprevious<CR>", { desc = "Prev buffer",   silent = true })
-      map("n", "<S-l>",      ":bnext<CR>",     { desc = "Next buffer",   silent = true })
+      map("n", "<S-h>",      "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
+      map("n", "<S-l>",      "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
       map("n", "<leader>bd", ":bdelete<CR>",   { desc = "Delete buffer", silent = true })
 
       -- ファイルエクスプローラー
