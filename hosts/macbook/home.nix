@@ -12,8 +12,8 @@
   home.username = "watanabekouhei";
   home.homeDirectory = "/Users/watanabekouhei";
 
-  programs.git.settings.user = {
-    name = "Kohei Watanabe";
-    email = "sek.ohei.w0822@icloud.com";
+  programs.git = {
+    userName = "Kohei Watanabe";
+    userEmail = "sek.ohei.w0822@icloud.com";
   };
 }

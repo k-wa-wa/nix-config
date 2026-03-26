@@ -256,22 +256,24 @@
       })
 
       -- ══════════════════════════════════════════════════════════════════
-      --  LSP (nvim 0.11 / lspconfig v3 API)
-      --  require('lspconfig').xxx.setup() は廃止 → vim.lsp.config + enable
+      --  LSP (nvim 0.10 / lspconfig API)
       -- ══════════════════════════════════════════════════════════════════
 
-      -- cmp の補完能力を全サーバーに適用
-      vim.lsp.config("*", {
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      })
+      local lspconfig = require('lspconfig')
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      local servers = { "nil_ls", "gopls", "ts_ls", "yamlls" }
+      for _, lsp in ipairs(servers) do
+        lspconfig[lsp].setup {
+          capabilities = capabilities,
+        }
+      end
 
       -- lua_ls のみ個別設定（vim グローバルを認識させる）
-      vim.lsp.config("lua_ls", {
+      lspconfig.lua_ls.setup {
+        capabilities = capabilities,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-      })
-
-      -- サーバーを有効化（lspconfig が rtp にあれば自動でデフォルト設定を提供）
-      vim.lsp.enable({ "lua_ls", "nil_ls", "gopls", "ts_ls", "yamlls" })
+      }
 
       -- バッファアタッチ時のキーマップ
       vim.api.nvim_create_autocmd("LspAttach", {

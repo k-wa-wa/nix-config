@@ -1,78 +1,11 @@
-{ pkgs, ... }: {
-  home.packages = [
-    # ── IDE launcher ─────────────────────────────────────────────────────
-    # ide          →  fzf でディレクトリ選択後に IDE セッションを起動
-    # ide <dir>    →  指定ディレクトリで即座に起動
-    (pkgs.writeShellScriptBin "ide" ''
-      _dir_to_session() {
-        echo "$1" | sed "s|^$HOME|~|" | rev | cut -d'/' -f1-3 | rev | tr '/.' '_'
-      }
-
-      _attach_or_switch() {
-        if [ -z "$TMUX" ]; then
-          exec tmux attach -t "=$1"
-        else
-          tmux switch-client -t "=$1"
-        fi
-      }
-
-      _launch_ide() {
-        local dir="$1"
-        local session_name
-        session_name="$(_dir_to_session "$dir")-ide"
-        [[ "$session_name" == "~" ]] && session_name="home"
-
-        # すでにセッションが存在すればそちらへ
-        if tmux has-session -t "=$session_name" 2>/dev/null; then
-          _attach_or_switch "$session_name"
-          return
-        fi
-
-        # 新規セッション作成（デタッチ状態）
-        tmux new-session -d -s "$session_name" -c "$dir"
-        tmux rename-window -t "$session_name:1" "ide"
-
-        # pane 1 (上 70%): nvim
-        tmux send-keys -t "$session_name:1.1" "nvim ." Enter
-
-        # pane 2 (下 30% 左): ターミナル
-        tmux split-window -t "$session_name:1.1" -v -p 30 -c "$dir"
-
-        # pane 3 (下 30% 右): ターミナル
-        tmux split-window -t "$session_name:1.2" -h -c "$dir"
-
-        # フォーカスを nvim に戻す
-        tmux select-pane -t "$session_name:1.1"
-
-        _attach_or_switch "$session_name"
-      }
-
-      # 引数でディレクトリを指定した場合は即起動
-      if [ -n "$1" ] && [ -d "$1" ]; then
-        _launch_ide "$(cd "$1" && pwd)"
-        exit 0
-      fi
-
-      # fzf で ghq + zoxide からディレクトリを選択
-      ghqdirs=$(ghq list --full-path 2>/dev/null | sed 's|^|[ghq] |')
-      zdirs=$(zoxide query --list 2>/dev/null | sed 's|^|[z]   |')
-
-      result=$(printf "%s\n%s\n" "$ghqdirs" "$zdirs" \
-        | awk '!seen[$0]++' | grep -v '^$' \
-        | fzf --height 60% --border --prompt " ide> " --reverse \
-              --preview 'dir=$(echo {} | sed "s|^\[.*\] ||"); eza --tree --level 2 --color always "$dir" 2>/dev/null || echo "$dir"' \
-              --preview-window right:40%)
-      [ $? -ne 0 ] || [ -z "$result" ] && exit 1
-
-      # prefix を除去してディレクトリパスを取り出す
-      selected=$(echo "$result" | sed 's|^\[.*\] ||' | sed 's|^[[:space:]]*||')
-
-      [ -d "$selected" ] || exit 1
-      _launch_ide "$selected"
-    '')
-
-    # ── Session selector ─────────────────────────────────────────────────
-    (pkgs.writeShellScriptBin "ts" ''
+{ pkgs, ... }:
+let
+  ts-script = pkgs.writeShellApplication {
+    name = "ts";
+    runtimeInputs = with pkgs; [ tmux ghq zoxide fzf eza coreutils gnused gnugrep gawk util-linux ];
+    checkPhase = "";
+    text = ''
+      set +u
       _dir_to_session() {
         echo "$1" | sed "s|^$HOME|~|" | rev | cut -d'/' -f1-3 | rev | tr '/.' '_'
       }
@@ -132,7 +65,91 @@
         _attach_or_switch "$session_name"
         exit 0
       fi
-    '')
+    '';
+  };
+
+  ide-script = pkgs.writeShellApplication {
+    name = "ide";
+    runtimeInputs = with pkgs; [ tmux ghq zoxide fzf eza coreutils gnused gnugrep gawk util-linux ];
+    checkPhase = "";
+    text = ''
+      set +u
+      _dir_to_session() {
+        echo "$1" | sed "s|^$HOME|~|" | rev | cut -d'/' -f1-3 | rev | tr '/.' '_'
+      }
+
+      _attach_or_switch() {
+        if [ -z "$TMUX" ]; then
+          exec tmux attach -t "=$1"
+        else
+          tmux switch-client -t "=$1"
+        fi
+      }
+
+      _launch_ide() {
+        local dir="$1"
+        local session_name
+        session_name="$(_dir_to_session "$dir")-ide"
+        [[ "$session_name" == "~" ]] && session_name="home"
+
+        # すでにセッションが存在すればそちらへ
+        if tmux has-session -t "=$session_name" 2>/dev/null; then
+          _attach_or_switch "$session_name"
+          return
+        fi
+
+        # 新規セッション作成（デタッチ状態）
+        tmux new-session -d -s "$session_name" -c "$dir"
+        tmux rename-window -t "$session_name:1" "ide"
+
+        # pane 1 (上 70%): nvim
+        tmux send-keys -t "$session_name:1.1" "nvim ." Enter
+
+        # pane 2 (下 30% 左): ターミナル
+        tmux split-window -t "$session_name:1.1" -v -p 30 -c "$dir"
+
+        # pane 3 (下 30% 右): ターミナル
+        tmux split-window -t "$session_name:1.2" -h -c "$dir"
+
+        # フォーカスを nvim に戻す
+        tmux select-pane -t "$session_name:1.1"
+
+        _attach_or_switch "$session_name"
+      }
+
+      # 引数でディレクトリを指定した場合は即起動
+      if [ -n "''${1:-}" ] && [ -d "''${1:-}" ]; then
+        _launch_ide "$(cd "''${1:-}" && pwd)"
+        exit 0
+      fi
+
+      # fzf で ghq + zoxide からディレクトリを選択
+      ghqdirs=$(ghq list --full-path 2>/dev/null | sed 's|^|[ghq] |')
+      zdirs=$(zoxide query --list 2>/dev/null | sed 's|^|[z]   |')
+
+      result=$(printf "%s\n%s\n" "$ghqdirs" "$zdirs" \
+        | awk '!seen[$0]++' | grep -v '^$' \
+        | fzf --height 60% --border --prompt " ide> " --reverse \
+              --preview 'dir=$(echo {} | sed "s|^\[.*\] ||"); eza --tree --level 2 --color always "$dir" 2>/dev/null || echo "$dir"' \
+              --preview-window right:40%)
+      [ $? -ne 0 ] || [ -z "$result" ] && exit 1
+
+      # prefix を除去してディレクトリパスを取り出す
+      selected=$(echo "$result" | sed 's|^\[.*\] ||' | sed 's|^[[:space:]]*||')
+
+      [ -d "$selected" ] || exit 1
+      _launch_ide "$selected"
+    '';
+  };
+in {
+  home.packages = [
+    # ── IDE launcher ─────────────────────────────────────────────────────
+    # ide          →  fzf でディレクトリ選択後に IDE セッションを起動
+    # ide <dir>    →  指定ディレクトリで即座に起動
+    ide-script
+
+    # ── Session selector ─────────────────────────────────────────────────
+    ts-script
   ];
 
   programs.tmux = {
@@ -223,7 +240,7 @@
     initExtra = ''
       # ターミナル起動時の tmux 自動起動（VSCode では起動しない）
       if [ -z "$TMUX" ] && [ -n "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
-        ts && exit
+        ${ts-script}/bin/ts && exit
       fi
     '';
   };

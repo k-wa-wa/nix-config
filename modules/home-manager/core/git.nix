@@ -1,7 +1,7 @@
 { ... }: {
   programs.git = {
     enable = true;
-    settings = {
+    extraConfig = {
       ghq = {
         root = "~/ghq";
       };
@@ -22,7 +22,7 @@
       g  = "git";
       sd = "ghq-cd";
     };
-    initContent = ''
+    initExtra = ''
       function ghq-cd {
         local dir=$(ghq list --full-path | fzf --height 40% --border --preview 'eza --tree --level=2 --icons --color=always {}')
         if [ -n "$dir" ]; then

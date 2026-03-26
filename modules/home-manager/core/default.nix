@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, unstablePkgs, ... }: {
   imports = [
     ./git.nix
     ./zsh.nix
@@ -32,9 +32,9 @@
     wget
 
     # Nodejs
-    nodejs_24
+    unstablePkgs.nodejs_24
 
-    nerd-fonts.jetbrains-mono
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   fonts.fontconfig.enable = true;

@@ -19,8 +19,8 @@
     set -g status-right-style "bg=#1a1b2e,fg=#6c7086"
   '';
 
-  programs.git.settings.user = {
-    name = "Kohei Watanabe";
-    email = "sek.ohei.w0822@icloud.com";
+  programs.git = {
+    userName = "Kohei Watanabe";
+    userEmail = "sek.ohei.w0822@icloud.com";
   };
 }

@@ -20,7 +20,7 @@
     klog    = "stern";
   };
 
-  programs.zsh.initContent = ''
+  programs.zsh.initExtra = ''
     # kubectl completion を読み込んでから compdef でエイリアスを設定する
     source <(kubectl completion zsh)
     compdef kubecolor=kubectl
