@@ -31,6 +31,10 @@
     curl
     wget
 
+    # ネットワーク・システム管理
+    lsof
+    dnsutils # dig, nslookup 等
+
     # Nodejs
     unstablePkgs.nodejs_24
 
