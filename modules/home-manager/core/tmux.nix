@@ -18,7 +18,7 @@ let
         fi
       }
 
-      sessions=$(tmux list-sessions -F "[s] #{session_name}" 2>/dev/null)
+      sessions=$(tmux list-sessions -F "[s] #{session_name}" 2>/dev/null || true)
       ghqdirs=$(ghq list --full-path 2>/dev/null | sed 's|^|[ghq] |')
       zdirs=$(zoxide query --list 2>/dev/null)
 
@@ -154,9 +154,13 @@ in {
 
   programs.tmux = {
     enable = true;
+    shell = "${pkgs.zsh}/bin/zsh";
     mouse = true;
     terminal = "tmux-256color";
     extraConfig = ''
+      # デフォルトシェルの起動コマンドをログインシェルにする（macOSでの環境変数継承のため）
+      set-option -g default-command "${pkgs.zsh}/bin/zsh --login"
+
       set-option -gw mode-keys vi
 
       # True color
