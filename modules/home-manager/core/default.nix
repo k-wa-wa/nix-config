@@ -6,6 +6,7 @@
     ./neovim.nix
 
     ./golang.nix
+    ./rust.nix
   ];
 
   programs.home-manager.enable = true; # Home Manager自身を管理
