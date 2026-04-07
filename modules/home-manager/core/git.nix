@@ -10,6 +10,8 @@
         s = "switch";
         c = "!git commit -m";
         f = "fetch";
+
+        ad = "add";
         ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
         pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
         co = "checkout";

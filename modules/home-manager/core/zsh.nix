@@ -43,7 +43,7 @@
     shellAliases = {
       ls = "eza";
       ll = "eza -l";
-      less = "bat";
+      less = "bat --paging=always";
     };
 
     history = {
