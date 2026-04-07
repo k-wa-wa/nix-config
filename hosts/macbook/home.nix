@@ -9,8 +9,8 @@
   ];
 
   home.stateVersion = "23.11";
-  home.username = "watanabekouhei";
-  home.homeDirectory = "/Users/watanabekouhei";
+  home.username = "koheiwatanabe";
+  home.homeDirectory = "/Users/koheiwatanabe";
 
   programs.git = {
     userName = "Kohei Watanabe";
