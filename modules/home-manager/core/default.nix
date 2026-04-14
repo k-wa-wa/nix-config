@@ -18,6 +18,7 @@
 
     # 開発・生産性向上
     git
+    gh
     ghq
     ripgrep
     fzf
