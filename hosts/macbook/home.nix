@@ -6,6 +6,7 @@
     ../../modules/home-manager/ghostty
     ../../modules/home-manager/iterm2
     ../../modules/home-manager/others/alias.nix
+    ../../modules/home-manager/vscode
   ];
 
   home.stateVersion = "23.11";

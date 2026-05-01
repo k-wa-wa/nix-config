@@ -1,0 +1,6 @@
+[
+    {
+        "key": "cmd+n",
+        "command": "explorer.newFile"
+    }
+]
