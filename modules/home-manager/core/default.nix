@@ -5,7 +5,7 @@
     ./tmux.nix
     ./neovim.nix
 
-    ./golang.nix
+    ./mise.nix
     ./rust.nix
   ];
 
@@ -36,9 +36,6 @@
     # ネットワーク・システム管理
     lsof
     dnsutils # dig, nslookup 等
-
-    # Nodejs
-    unstablePkgs.nodejs_24
 
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
