@@ -48,7 +48,7 @@
       }
 
       function agy {
-        local agy_path="$HOME/.antigravity/antigravity/bin/agy"
+        local agy_path="$HOME/.antigravity-ide/antigravity-ide/bin/agy-ide"
         if [[ $# -gt 0 ]]; then
           "$agy_path" "$@"
         else
