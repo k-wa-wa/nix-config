@@ -8,6 +8,14 @@
         node = "24.14.0";
         bun  = "1.3.14";
       };
+      settings = {
+        node = {
+          compile = false;
+        };
+        python = {
+          compile = false;
+        };
+      };
     };
   };
 }
