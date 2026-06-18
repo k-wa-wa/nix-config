@@ -37,6 +37,8 @@
     lsof
     dnsutils # dig, nslookup 等
 
+    unstablePkgs.nodejs_24
+
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
