@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     opentofu
     terragrunt
+    tflint
+
     sops
     age
     ssh-to-age
