@@ -14,6 +14,7 @@
     talosctl
 
     kubeconform
+    kube-linter
 
     # ログ・デバッグ
     stern # 複数Podのログを同時に追跡
