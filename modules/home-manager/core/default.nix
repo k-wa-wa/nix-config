@@ -26,6 +26,7 @@
     bat # cat のモダンな代替（シンタックスハイライト付）
     jq
     yq
+    nixfmt-rfc-style
     tree
     gnumake
     docker
