@@ -41,6 +41,9 @@
     unstablePkgs.nodejs_24
 
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+
+    python311
+    uv
   ];
 
   fonts.fontconfig.enable = true;
