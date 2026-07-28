@@ -7,6 +7,7 @@
     ../../modules/home-manager/iterm2
     ../../modules/home-manager/others/alias.nix
     ../../modules/home-manager/vscode
+    ../../modules/home-manager/ai-agent
   ];
 
   home.stateVersion = "23.11";
