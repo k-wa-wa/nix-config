@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../../modules/home-manager/core
     ../../modules/home-manager/k8s
     ../../modules/home-manager/iac
-    ../../modules/home-manager/ghostty
     ../../modules/home-manager/iterm2
     ../../modules/home-manager/others/alias.nix
     ../../modules/home-manager/vscode
