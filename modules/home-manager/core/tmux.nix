@@ -189,8 +189,8 @@ in
       # True color
       set -ga terminal-overrides ",*256col*:Tc"
 
-      # 選択時にクリップボードへ自動コピーしない
-      set -s set-clipboard off
+      # クリップボード連携を有効化（OSC 52 経由で iTerm2 や端末に連携）
+      set -s set-clipboard on
 
       # vim でのEsc遅延を防ぐ
       set -sg escape-time 10
@@ -255,7 +255,12 @@ in
       # prefix + X でセッションを削除
       bind X kill-session
 
-      # ドラッグ終了時にコピーモードを終了しない
+      # vi スタイルの選択・コピー設定
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      # y で macOS のクリップボード (pbcopy) にコピーしてモード終了
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+
+      # ドラッグ終了時にコピーモードを終了しない（選択のみ行う）
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X noop
       # 選択範囲外をクリックした時に選択を解除する
       bind-key -T copy-mode-vi MouseDown1Pane send-keys -X clear-selection
