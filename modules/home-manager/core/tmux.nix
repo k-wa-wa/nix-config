@@ -2,7 +2,18 @@
 let
   ts-script = pkgs.writeShellApplication {
     name = "ts";
-    runtimeInputs = with pkgs; [ tmux ghq zoxide fzf eza coreutils gnused gnugrep gawk util-linux ];
+    runtimeInputs = with pkgs; [
+      tmux
+      ghq
+      zoxide
+      fzf
+      eza
+      coreutils
+      gnused
+      gnugrep
+      gawk
+      util-linux
+    ];
     checkPhase = "";
     text = ''
       set +u
@@ -70,7 +81,18 @@ let
 
   ide-script = pkgs.writeShellApplication {
     name = "ide";
-    runtimeInputs = with pkgs; [ tmux ghq zoxide fzf eza coreutils gnused gnugrep gawk util-linux ];
+    runtimeInputs = with pkgs; [
+      tmux
+      ghq
+      zoxide
+      fzf
+      eza
+      coreutils
+      gnused
+      gnugrep
+      gawk
+      util-linux
+    ];
     checkPhase = "";
     text = ''
       set +u
@@ -141,7 +163,8 @@ let
       _launch_ide "$selected"
     '';
   };
-in {
+in
+{
   home.packages = [
     # ── IDE launcher ─────────────────────────────────────────────────────
     # ide          →  fzf でディレクトリ選択後に IDE セッションを起動
@@ -236,14 +259,15 @@ in {
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X noop
       # 選択範囲外をクリックした時に選択を解除する
       bind-key -T copy-mode-vi MouseDown1Pane send-keys -X clear-selection
+
     '';
   };
 
   programs.zsh = {
     enable = true;
     initExtra = ''
-      # ターミナル起動時の tmux 自動起動（VSCode では起動しない）
-      if [ -z "$TMUX" ] && [ -n "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+      # ターミナル起動時の tmux 自動起動（VSCode や cmux では起動しない）
+      if [ -z "$TMUX" ] && [ -n "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$CMUX_SHELL_INTEGRATION" ] && [ -z "$CMUX_WORKSPACE_ID" ]; then
         ${ts-script}/bin/ts && exit
       fi
     '';
