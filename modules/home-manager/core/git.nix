@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.git = {
     enable = true;
     extraConfig = {
@@ -21,7 +22,7 @@
 
   programs.zsh = {
     shellAliases = {
-      g  = "git";
+      g = "git";
       sd = "ghq-cd";
     };
     initExtra = ''
@@ -47,7 +48,7 @@
         fi
       }
 
-      function agy {
+      function agyi {
         local agy_path="$HOME/.antigravity-ide/antigravity-ide/bin/agy-ide"
         if [[ $# -gt 0 ]]; then
           "$agy_path" "$@"
