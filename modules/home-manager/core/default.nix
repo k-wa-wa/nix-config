@@ -1,4 +1,5 @@
-{ pkgs, unstablePkgs, ... }: {
+{ pkgs, unstablePkgs, ... }:
+{
   imports = [
     ./git.nix
     ./zsh.nix
@@ -14,10 +15,12 @@
   home.packages = with pkgs; [
     # システム管理・モニタリング
     htop
-    fastfetch    # システム情報の表示
+    fastfetch # システム情報の表示
 
     # 開発・生産性向上
     git
+    git-crypt
+    gitleaks
     gh
     ghq
     ripgrep
