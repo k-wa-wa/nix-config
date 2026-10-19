@@ -271,8 +271,13 @@ in
   programs.zsh = {
     enable = true;
     initExtra = ''
-      # ターミナル起動時の tmux 自動起動（VSCode や cmux では起動しない）
-      if [ -z "$TMUX" ] && [ -n "$PS1" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$CMUX_SHELL_INTEGRATION" ] && [ -z "$CMUX_WORKSPACE_ID" ]; then
+      # ターミナル起動時の tmux 自動起動（VSCode や Orca、cmux では起動しない）
+      if [ -z "$TMUX" ] \
+        && [ -n "$PS1" ] \
+        && [ "$TERM_PROGRAM" != "vscode" ] \
+        && [ "$TERM_PROGRAM" != "Orca" ] \
+        && [ -z "$CMUX_SHELL_INTEGRATION" ] \
+        && [ -z "$CMUX_WORKSPACE_ID" ]; then
         ${ts-script}/bin/ts && exit
       fi
     '';
