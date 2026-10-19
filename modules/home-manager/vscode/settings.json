@@ -1,7 +1,9 @@
 {
     "window.zoomLevel": -0.5,
     "workbench.colorTheme": "Dark Modern",
+    "workbench.editor.enablePreview": false,
 
     "//a": "copilot settings",
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "chat.agent.sandbox.enabled": "off"
 }

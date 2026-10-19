@@ -2,5 +2,9 @@
     {
         "key": "cmd+n",
         "command": "explorer.newFile"
+    },
+    {
+        "key": "cmd+l",
+        "command": "workbench.action.chat.toggle"
     }
 ]
