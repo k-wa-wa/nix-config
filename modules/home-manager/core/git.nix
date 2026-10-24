@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       ghq = {
         root = "~/ghq";
       };
@@ -25,7 +25,7 @@
       g = "git";
       sd = "ghq-cd";
     };
-    initExtra = ''
+    initContent = ''
       function __ghq_fzf_pick() {
         ghq list --full-path | fzf --height 40% --border --preview 'eza --tree --level=2 --icons --color=always {}'
       }

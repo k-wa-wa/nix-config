@@ -270,7 +270,7 @@ in
 
   programs.zsh = {
     enable = true;
-    initExtra = ''
+    initContent = ''
       # ターミナル起動時の tmux 自動起動（VSCode や Orca、cmux では起動しない）
       if [ -z "$TMUX" ] \
         && [ -n "$PS1" ] \

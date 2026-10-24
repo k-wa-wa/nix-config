@@ -6,7 +6,7 @@
     historySubstringSearch.enable = true; # 入力中の文字列から始まる履歴だけを検索
     syntaxHighlighting.enable = true;
 
-    initExtra = ''
+    initContent = ''
       # Nix のパスを PATH の最優先（先頭）に配置する
       export PATH="$HOME/.nix-profile/bin:$PATH"
 
@@ -23,14 +23,6 @@
         if [[ -n "$dir" ]]; then
           cd "$dir"
         fi
-      }
-
-      function y() {
-        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-        command yazi "$@" --cwd-file="$tmp"
-        IFS= read -r -d "" cwd < "$tmp"
-        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-        rm -f -- "$tmp"
       }
 
       # nix コマンド有効化
@@ -172,6 +164,7 @@ $character
   programs.yazi = {
     enable = true;
     enableZshIntegration = true; # シェルとの連携を有効化
+    shellWrapperName = "y"; # 終了時にカレントディレクトリを移動する y コマンド
 
     # Yazi自体の設定
     settings = {
