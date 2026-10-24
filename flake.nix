@@ -27,5 +27,9 @@
       extraSpecialArgs = { inherit unstablePkgs; };
       modules = [ ./hosts/mac2/home.nix ];
     };
+
+    # atelier (nuage-cluster) の nixos ユーザーの環境。nuage-cluster が home-manager の NixOS モジュールとして読み込む。
+    # unstablePkgs は読み込む側が extraSpecialArgs で渡す。
+    homeModules.atelier = ./hosts/atelier/home.nix;
   };
 }
