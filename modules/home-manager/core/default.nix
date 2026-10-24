@@ -29,7 +29,7 @@
     bat # cat のモダンな代替（シンタックスハイライト付）
     jq
     yq
-    nixfmt-rfc-style
+    nixfmt
     tree
     gnumake
     docker
@@ -43,7 +43,7 @@
 
     unstablePkgs.nodejs_24
 
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
 
     python311
     uv

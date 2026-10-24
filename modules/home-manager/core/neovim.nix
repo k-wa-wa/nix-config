@@ -5,6 +5,10 @@
     viAlias = true;
     vimAlias = true;
 
+    # 26.05 で既定値が false に変更。Ruby/Python 製プラグインは使っていないので新しい既定に合わせる
+    withRuby = false;
+    withPython3 = false;
+
     extraPackages = with pkgs; [
       lua-language-server          # Lua (nvim config)
       nil                          # Nix
@@ -56,7 +60,7 @@
       which-key-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- ══════════════════════════════════════════════════════════════════
       --  Options
       -- ══════════════════════════════════════════════════════════════════
