@@ -4,7 +4,6 @@
     ./git.nix
     ./zsh.nix
     ./tmux.nix
-    ./neovim.nix
 
     ./mise.nix
     ./rust.nix
