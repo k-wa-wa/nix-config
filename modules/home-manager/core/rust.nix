@@ -1,5 +1,5 @@
-{ unstablePkgs, ... }: {
-  home.packages = with unstablePkgs; [
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
     rustc
     cargo
     rustfmt

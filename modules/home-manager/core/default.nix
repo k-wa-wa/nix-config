@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./git.nix
@@ -40,7 +40,7 @@
     lsof
     dnsutils # dig, nslookup 等
 
-    unstablePkgs.nodejs_24
+    nodejs_24
 
     nerd-fonts.jetbrains-mono
 
