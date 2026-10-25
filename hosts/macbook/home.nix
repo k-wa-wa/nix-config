@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/home-manager/core
+    ../../modules/home-manager/core/tmux.nix
     ../../modules/home-manager/k8s
     ../../modules/home-manager/iac
     ../../modules/home-manager/iterm2

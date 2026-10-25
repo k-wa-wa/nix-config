@@ -3,7 +3,7 @@
   imports = [
     ./git.nix
     ./zsh.nix
-    ./tmux.nix
+    # tmux (./tmux.nix) は使うホストだけが読み込む。atelier ではセッションを Orca が持つので使わない。
 
     ./mise.nix
     ./rust.nix

@@ -26,5 +26,8 @@
 
     # atelier (nuage-cluster) の nixos ユーザーの環境。nuage-cluster が home-manager の NixOS モジュールとして読み込む。
     homeModules.atelier = ./hosts/atelier/home.nix;
+
+    # どのホストのエージェントにも効く個人の共通ルール。atelier では nuage-cluster が autopilot5 の共通ルールに足す。
+    lib.agentRules = ./modules/home-manager/ai-agent/rules.md;
   };
 }

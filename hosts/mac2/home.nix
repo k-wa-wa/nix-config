@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ../../modules/home-manager/core
+    ../../modules/home-manager/core/tmux.nix
     ../../modules/home-manager/iterm2
     ../../modules/home-manager/vscode
   ];

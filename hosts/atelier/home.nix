@@ -16,11 +16,6 @@
   # git の名前とメールは置かない。atelier の commit は bot として行う (nuage-cluster の setup.sh が設定する)。
   # ai-agent モジュールも読み込まない。~/.claude/CLAUDE.md などは autopilot5 が置く。
 
-  # Mac と見分けられるよう、プロンプトのディレクトリと tmux のステータスバーをパープルにする。
+  # Mac と見分けられるよう、プロンプトのディレクトリをパープルにする。
   programs.starship.settings.directory.style = lib.mkForce "#BD93F9";
-  programs.tmux.extraConfig = lib.mkAfter ''
-    set -g status-style "bg=#1a1b2e,fg=#cdd6f4"
-    set -g status-left-style "bg=#BD93F9,fg=#1a1b2e,bold"
-    set -g status-right-style "bg=#1a1b2e,fg=#6c7086"
-  '';
 }
