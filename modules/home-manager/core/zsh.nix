@@ -6,6 +6,10 @@
     historySubstringSearch.enable = true; # 入力中の文字列から始まる履歴だけを検索
     syntaxHighlighting.enable = true;
 
+    setOptions = [
+      "INTERACTIVE_COMMENTS" # コマンドラインで # 以降をコメントとして扱う
+    ];
+
     initContent = ''
       # Nix のパスを PATH の最優先（先頭）に配置する
       export PATH="$HOME/.nix-profile/bin:$PATH"
