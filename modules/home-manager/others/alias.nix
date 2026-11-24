@@ -5,6 +5,7 @@
     shellAliases = {
       claude = "~/.local/bin/claude";
       agy = "~/.local/bin/agy";
+      codex = "~/.local/bin/codex";
     };
   };
 }
